@@ -1,0 +1,26 @@
+package com.yoon.SpringCapstone.utils;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.dto.PostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.repository.LoadPostRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+@Transactional
+public class GetPost {
+	
+	private final LoadPostRepository loadPostRepository;
+	
+	public List<Post> getPostItems(){
+		return loadPostRepository.findAll();
+	}
+	
+}

@@ -1,0 +1,23 @@
+package com.yoon.SpringCapstone.dto;
+
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+public class LoadPostDto {
+	private Long id;
+	
+	private String categoryTitle;
+	
+	private String title;
+	
+	private String text;
+}

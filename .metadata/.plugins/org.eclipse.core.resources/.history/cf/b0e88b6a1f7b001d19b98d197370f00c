@@ -1,0 +1,21 @@
+package com.yoon.SpringCapstone.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+import com.yoon.SpringCapstone.entity.Post;
+
+public interface LoadPostRepository extends JpaRepository<Post, Long>
+				,QuerydslPredicateExecutor<Post>{
+	
+	
+	List<Post> findByCategoryTitle(String categoryTitle);
+	List<Post> findByTitle(String title);
+	List<Post> findByText(String text);	
+	
+	
+}

@@ -1,0 +1,72 @@
+package com.yoon.SpringCapstone.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.dto.PostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+import com.yoon.SpringCapstone.utils.UploadPost;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class MainController {
+	
+	@Autowired
+	UploadPost uploadPost;
+	
+	private final GetPost getPost;
+	
+	private boolean testbool = true;
+	
+	@GetMapping("/")
+	public String main(LoadPostDto loadPostdto, Model model) {
+		
+		//dummyData---------------------
+		if(testbool) {
+			PostDto temp1 = new PostDto();
+			temp1.setCategoryTitle("Google Dinosaur Game");
+			temp1.setTitle("Google Dinosaur Game");
+			temp1.setText("구글 크롬의 공룡 게임을 구현, 원본의 이미지 리소스를 참고 하였음");
+			Post tp1 = Post.createPost(temp1);
+			uploadPost.uploadPost(tp1);
+			
+			PostDto temp2 = new PostDto();
+			temp2.setCategoryTitle("테트리스");
+			temp2.setTitle("테트리스");
+			temp2.setText("자바의 배열과 스레드를 주로 이용하여 만든 게임. 20행/10열의 배열을 기반한 값을 통해 시각적으로 미노들을 표현하였음.");
+			Post tp2 = Post.createPost(temp2);
+			uploadPost.uploadPost(tp2);
+			
+			PostDto temp3 = new PostDto();
+			temp3.setCategoryTitle("Climb Cat");
+			temp3.setTitle("Climb Cat");
+			temp3.setText("유니티 기반 교재에 제공 된 예제를 기반으로 몇가지 기능을 추가하여 만든 게임.");
+			Post tp3 = Post.createPost(temp3);
+			uploadPost.uploadPost(tp3);
+			
+			PostDto temp4 = new PostDto();
+			temp4.setCategoryTitle("AntCafe Simulation");
+			temp4.setTitle("AntCafe Simulation");
+			temp4.setText("개미주식회사를 모작하여 만든 유니티 기반 게임. 일정 시간마다 무작위 확률로 방문하는 손님에게 요구하는 메뉴를 제공하여 엔딩을 보는 것이 목적.");
+			Post tp4 = Post.createPost(temp4);
+			uploadPost.uploadPost(tp4);
+			
+			testbool = false;
+		}
+		//dummyData---------------------
+		
+		List<Post> posts = getPost.getPostItems();
+		
+		model.addAttribute("postList", posts);
+		
+		return "main";
+	}
+}

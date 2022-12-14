@@ -1,0 +1,14 @@
+package com.yoon.SpringCapstone.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.yoon.SpringCapstone.entity.Post;
+
+public interface LoadPostRepository extends JpaRepository<Post, Long> {
+
+//	@Query("update dt_post "
+//			+ "set categoryTitle = #{postDto.categoryTitle}, title = #{postDto.title}, text = #{postDto.text}"
+//			+ "where id = #{postDto.id}")
+//	PostDto updatePost(PostDto postDto);
+}

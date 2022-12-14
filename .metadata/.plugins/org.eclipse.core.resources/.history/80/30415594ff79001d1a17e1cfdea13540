@@ -1,0 +1,5 @@
+package com.yoon.SpringCapstone.entity;
+
+public class Post {
+
+}

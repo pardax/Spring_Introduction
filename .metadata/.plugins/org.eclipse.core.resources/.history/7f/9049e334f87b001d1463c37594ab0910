@@ -1,0 +1,121 @@
+package com.yoon.SpringCapstone.management.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.yoon.SpringCapstone.dto.PostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+import com.yoon.SpringCapstone.utils.UploadPost;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Controller
+@Log4j2
+@RequestMapping("/admin")
+@RequiredArgsConstructor
+public class ManageController {
+	
+	@Autowired
+	UploadPost uploadPost;
+	
+	private final GetPost getPost;
+	
+//	@Autowired
+//	Getpost getPost;
+	
+	@GetMapping({"/main", ""})
+	public String management(Model model) {
+		log.info("컨트롤 : " + "joined admin page");
+		return "adminMainPage";
+	}
+	
+	
+	
+	
+	
+//----------------------------------------------------------
+	
+	// <Manage Controller Start>
+	@GetMapping("/managePost")
+	public String managePost(Model model) {
+		
+		List<Post> posts = getPost.getPostItems();
+		
+		model.addAttribute("postList", posts);
+		
+		log.info("컨트롤 : " + "joined admin manage page");
+		return "adminManagePage";
+	}
+	// <Manage Controller End>
+	
+	
+	// <Edit Controller Start>
+	@GetMapping("/editpost/{postId}")
+	public String editPost(@PathVariable("postId")Long id, Model model) {
+		//폼
+		Post temp = getPost.getItem(id);
+		
+		model.addAttribute("LoadedDto", temp);
+		
+		log.info("Edit Page, Post ID : " + id);
+		return "adminPostEditPage";
+	}
+	
+	@PostMapping("/editPost/{postId}")
+	public String editPost(@Valid PostDto postDto, Model model) {
+		
+		log.info("==> Post : " + postDto.getId());
+		log.info("==> Post : " + postDto.getCategoryTitle());
+		log.info("==> Post : " + postDto.getTitle());
+		log.info("==> Post : " + postDto.getText());
+		return "redirect:/";
+	}
+	
+	// <Edit Controller End>
+	
+	
+	
+	// <Posting Controller Start>
+	@GetMapping("/uploadPost")
+	public String uploadPost(Model model) {
+		//postPage html object
+		model.addAttribute("PostDto", new PostDto());
+		log.info("컨트롤 : " + "joined admin post page");
+		return "adminPostPage";
+	}
+	
+	@PostMapping("/uploadPost")
+	public String uploadPost(@Valid PostDto postDto, BindingResult bindR, Model model) {
+		
+		if(bindR.hasErrors()) {
+			log.info("uploading => Binding Error");
+			return "/main";
+		}
+		
+		try {
+			Post post = Post.createPost(postDto);
+			uploadPost.uploadPost(post);
+			log.info("uploading => created successfully");
+		}catch (IllegalStateException e) {
+			log.info("uploading => creating Error");
+			return "/uploadPost";
+		}
+		
+		log.info("uploading => successfully save");
+		return "redirect:/";
+	}
+	// <Posting Controller End>
+	
+}

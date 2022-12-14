@@ -1,0 +1,30 @@
+package com.yoon.SpringCapstone.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class MainController {
+	
+	private final GetPost getPost;
+	
+	@GetMapping("/")
+	public String main(LoadPostDto loadPostdto, Model model) {
+		
+		List<Post> posts = getPost.getPostItems();
+		
+		model.addAttribute("postList", posts);
+		
+		return "main";
+	}
+}

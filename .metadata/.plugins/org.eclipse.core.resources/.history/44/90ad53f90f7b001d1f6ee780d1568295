@@ -1,0 +1,13 @@
+package com.yoon.SpringCapstone.dto;
+
+import org.springframework.stereotype.Repository;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Repository("loagPostDAO")
+public class LoadPostDAO {
+	
+	
+}

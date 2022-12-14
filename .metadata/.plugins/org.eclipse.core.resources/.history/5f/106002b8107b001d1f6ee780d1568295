@@ -1,0 +1,28 @@
+<code class="hljs xml"><span class="php"><span class="hljs-meta"><?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?></span></span>
+ 
+<span class="hljs-tag"><<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+       <span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span>
+       <span class="hljs-attr">xmlns:jee</span>=<span class="hljs-string">"http://www.springframework.org/schema/jee"</span>
+       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd"</span>></span>
+ 
+    <span class="hljs-tag"><<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSourceSpied"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.apache.commons.dbcp2.BasicDataSource"</span> <span class="hljs-attr">destroy-method</span>=<span class="hljs-string">"close"</span>></span>
+         <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"net.sf.log4jdbc.sql.jdbcapi.DriverSpy"</span> /></span>
+         <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:log4jdbc:mysql://127.0.0.1:3306/stgdb"</span> /></span>
+         <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span> /></span>
+         <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"apmsetup"</span> /></span>
+    <span class="hljs-tag"></<span class="hljs-name">bean</span>></span>
+      
+    <span class="hljs-tag"><<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"net.sf.log4jdbc.Log4jdbcProxyDataSource"</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"dataSourceSpied"</span> /></span>
+        <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"logFormatter"</span>></span>
+            <span class="hljs-tag"><<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"</span>></span>
+                <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"loggingType"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"MULTI_LINE"</span> /></span>
+                <span class="hljs-tag"><<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sqlPrefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"SQL         :  "</span>/></span>
+            <span class="hljs-tag"></<span class="hljs-name">bean</span>></span>
+        <span class="hljs-tag"></<span class="hljs-name">property</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">bean</span>></span>
+<span class="hljs-tag"></<span class="hljs-name">beans</span>></span>
+</code>

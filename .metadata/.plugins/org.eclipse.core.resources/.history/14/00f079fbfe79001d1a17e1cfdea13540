@@ -1,0 +1,22 @@
+package com.yoon.SpringCapstone.dto;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class PostDto{
+
+	@Id
+	private Long id;
+	
+	private String categoryTitle;
+	
+	private String title;
+	
+	private String text;
+}

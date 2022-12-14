@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminLayout}">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+    </style>
+</th:block>
+
+<!-- th:object=PostDto from ManageController -->
+<div layout:fragment="content">
+      <form action="/admin/uploadPost" role="form" method="post"  th:object="${PostDto}">
+      <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class="form-group">
+                <label th:for="categoryTitle">카테고리 타이틀</label>
+                <input type="text" th:field="*{categoryTitle}" class="form-control" placeholder="카테고리를 입력해주세요">
+            </div>
+            <br>
+            <div class="form-group">
+                <label th:for="title">타이틀</label>
+                <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요">
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">글 내용</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" th:field="*{text}"></textarea>
+            </div>
+            <br>
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-success" style="">등 록</button>
+            </div>
+        </div>
+        </form>
+</div>
+
+
+
+</html>

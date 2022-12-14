@@ -1,0 +1,5 @@
+package com.yoon.SpringCapstone.dto;
+
+public class LoadPostDto {
+
+}

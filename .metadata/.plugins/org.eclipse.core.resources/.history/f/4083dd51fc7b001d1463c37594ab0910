@@ -1,0 +1,30 @@
+package com.yoon.SpringCapstone.utils;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.repository.PostRepository;
+import com.yoon.SpringCapstone.repository.UpdatePostRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Transactional
+@Log4j2
+@RequiredArgsConstructor
+public class UpdatePost {
+	
+	private final UpdatePostRepository updatePostRepository;
+	
+	
+	public Post updateParameter(Long id) {
+		Optional<Post> postOp = updatePostRepository.findById(id);
+		Post post = postOp.get(); 
+		
+		return null;
+	}
+}

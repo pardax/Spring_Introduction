@@ -1,0 +1,9 @@
+package com.yoon.SpringCapstone.dto;
+
+public class LoadPostDto {
+	private String searchDataType;
+	
+	private String searchBy;
+	
+	private String searchQuery = "";
+}

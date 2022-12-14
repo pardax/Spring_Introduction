@@ -1,0 +1,13 @@
+package com.yoon.SpringCapstone.repository;
+
+import java.util.List;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.entity.Post;
+
+public interface LoadPostRepositoryEx {
+	
+	List<Post> getPostItems(LoadPostDto loadPostDto);
+	
+}
+

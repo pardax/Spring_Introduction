@@ -1,0 +1,16 @@
+package com.yoon.SpringCapstone.utils;
+
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.repository.PostRepository;
+
+public class UploadPost {
+	
+	private final PostRepository postRepository = null;
+	
+	
+	public Post uploadPost(Post writtenPost) {
+		
+		return postRepository.save(writtenPost);
+	}
+	
+}

@@ -1,0 +1,50 @@
+package com.yoon.SpringCapstone.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.dto.PostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class MainController {
+	
+	private final GetPost getPost;
+	
+	@GetMapping("/")
+	public String main(LoadPostDto loadPostdto, Model model,
+			@PathVariable("page") Optional<Integer> page) {
+		
+		//Post posts = getPost.getPostItems(loadPostdto);
+		//posts = getPost.getPostItems(loadPostdto);
+		
+		List<PostDto> post = new ArrayList<>();
+		
+		//Test Values
+		for(int i = 0; i < 5; i++) {
+			PostDto pTemp = new PostDto();
+			
+			pTemp.setId((long)i);
+			pTemp.setCategoryTitle("카테고리 제목" + i);
+			pTemp.setTitle("포스트 제목" + i);
+			pTemp.setText("text" + i);
+			post.add(pTemp);
+		}
+		model.addAttribute("postList", post);
+	
+		return "main";
+	}
+}

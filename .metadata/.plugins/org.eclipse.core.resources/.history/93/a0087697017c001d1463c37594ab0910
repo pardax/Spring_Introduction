@@ -1,0 +1,35 @@
+package com.yoon.SpringCapstone.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.yoon.SpringCapstone.dto.LoadPostDto;
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class MainController {
+	
+	private final GetPost getPost;
+	
+	@GetMapping("/")
+	public String main(LoadPostDto loadPostdto, Model model) {
+		
+		List<Post> posts = getPost.getPostItems();
+		
+		Post temp1 = new Post();
+		temp1.setCategoryTitle("Google Dinosaur Game");
+		temp1.setTitle("Google Dinosaur Game");
+		temp1.setText("구글 크롬의 공룡 게임을 구현, 원본의 이미지 리소스를 참고 하였음");
+		
+		model.addAttribute("postList", posts);
+		
+		return "main";
+	}
+}

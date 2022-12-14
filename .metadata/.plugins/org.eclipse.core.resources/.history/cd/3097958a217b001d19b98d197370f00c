@@ -1,0 +1,27 @@
+package com.yoon.SpringCapstone.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+import com.yoon.SpringCapstone.entity.Post;
+
+public interface LoadPostRepository extends JpaRepository<Post, Long>
+				,QuerydslPredicateExecutor<Post>{
+	
+	
+	@Query("select category_title from dt_post")
+	List<Post> findByCategoryTitle(String categoryTitle);
+	
+	@Query("select title from dt_post")
+	List<Post> findByTitle(String title);
+	
+	@Query("select text from dt_post")
+	List<Post> findByText(String text);
+	
+	
+	List<Post> findAll();
+	
+}

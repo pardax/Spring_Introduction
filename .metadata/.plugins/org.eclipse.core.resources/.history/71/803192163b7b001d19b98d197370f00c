@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/adminLayout}">
+	
+	
+	<div layout:fragment="content">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Post ID</b></td>
+						<td><b>Category Title</b></td>
+						<td><b>Title</b></td>
+						<td><b>Edit</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="posts, status: ${postList}">
+						<td th:text="${posts.id}"></td>
+						<td th:text="${posts.categoryTitle}"></td>
+						<td th:text="${posts.title}"></td>
+						
+						<td>
+							<button type="button" class="btn btn-primary">
+							버튼1
+							</button>
+							<button type="button" class="btn btn-primary">
+							버튼2
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</html>

@@ -1,0 +1,19 @@
+package com.yoon.SpringCapstone.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+import com.yoon.SpringCapstone.entity.Post;
+import com.yoon.SpringCapstone.utils.GetPost;
+
+public interface LoadPostRepositoryEx {
+	
+	List<Post> getPostItems(GetPost getPost);
+	
+}
+
