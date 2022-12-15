@@ -45,9 +45,6 @@ public class ManageController {
 	}
 	
 	
-	
-	
-	
 //----------------------------------------------------------
 	
 	// <Manage Controller Start>
@@ -119,5 +116,15 @@ public class ManageController {
 	}
 	
 	// <Posting Controller End>
+	
+	//delete controller
+	
+	@GetMapping("/deletePost/{postId}")
+	public String deletePost(@PathVariable("postId")Long id, Model model) {
+		//폼
+		uploadPost.deletePost(id);
+		log.info("Edit Page, Post ID : " + id);
+		return "redirect:/admin/managePost";
+	}
 	
 }

@@ -24,6 +24,12 @@ public class UploadPost {
 		return postRepository.save(writtenPost);
 	}
 	
+	public boolean deletePost(Long id) {
+		postRepository.deleteById(id);
+		log.info("삭제 포스트 : " + id);
+		return false;
+	}
+	
 //	public PostDto updatePost(PostDto updatedPostDto) {
 //		return postRepository.updatePost(updatedPostDto);
 //	}

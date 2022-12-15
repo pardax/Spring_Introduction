@@ -25,7 +25,7 @@
 							수정
 							</button>
 							<button type="button" class="btn btn-outline-danger btn-sm"
-							th:formaction="@{/admin/editpost}">
+							th:onClick="|location.href='@{/admin/deletePost/}' + '${posts.id}'|">
 							삭제
 							</button>
 						</td>
